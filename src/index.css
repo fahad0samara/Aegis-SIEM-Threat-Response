@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --pbi-bg: #070b14;
+    --pbi-canvas: #070b14;
+    --pbi-card: #0b1326;
+    --pbi-border: #18284c;
+    --pbi-border-hover: #1e3566;
+    --pbi-text: #f1f5f9;
+    --pbi-text-sub: #94a3b8;
+    --pbi-accent: #118dff;
+    --pbi-yellow: #f59e0b;
+  }
+
+  body {
+    font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Crisp, subtle scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.45);
+}
+
+/* Utility to hide scrollbars while maintaining scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle enterprise KPI number refresh fade-in */
+@keyframes kpiNumberFadeIn {
+  0% {
+    opacity: 0.35;
+    transform: translateY(1.5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle card sync flash/fade on data refresh */
+@keyframes kpiCardSyncFade {
+  0% {
+    opacity: 0.82;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-kpi-fade-in {
+  animation: kpiNumberFadeIn 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.animate-kpi-card-sync {
+  animation: kpiCardSyncFade 300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kpi-fade-in,
+  .animate-kpi-card-sync {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
